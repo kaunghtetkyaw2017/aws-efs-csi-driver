@@ -95,4 +95,15 @@ metadata:
   name: efs-csi-controller-sa
   namespace: kube-system
 ```
-### **Deploy the Amazon EFS CSI driver
+### **12. Deploy the Amazon EFS CSI driver**
+```bash
+kubectl apply -f public-ecr-driver.yaml
+```
+### **[ Helm ]**
+This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using Helm with Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/helm.html).
+**To install the driver using Helm**
+#### 1. Add the Helm repo.
+```bash
+helm repo add aws-efs-csi-driver https://kubernetes-sigs.github.io/aws-efs-csi-driver/
+```
+
