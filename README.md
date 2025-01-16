@@ -100,7 +100,7 @@ metadata:
 kubectl apply -f public-ecr-driver.yaml
 ```
 ### **[ Helm ]**
-This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using Helm with Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/helm.html).
+This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using Helm with Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/helm.html).  
 **To install the driver using Helm**
 #### 1. Add the Helm repo.
 ```bash
