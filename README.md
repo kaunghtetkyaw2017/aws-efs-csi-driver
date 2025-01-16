@@ -12,3 +12,8 @@ aws iam create-policy
     --policy-name AmazonEKS_EFS_CSI_Driver_Policy 
     --policy-document file://iam-policy-example.json
 ```
+### **3. To determine your cluster's OIDC provider ID, run the following command:**
+```bash
+aws eks describe-cluster --name your_cluster_name --query "cluster.identity.oidc.issuer" --output text
+```
+**Note:** Replace your_cluster_name with your cluster name.
