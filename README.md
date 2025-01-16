@@ -7,9 +7,8 @@ curl -o iam-policy-example.json https://raw.githubusercontent.com/kubernetes-sig
 ```
 
 ### **2. Create an IAM policy:**
-````bash
+```bash
 aws iam create-policy 
     --policy-name AmazonEKS_EFS_CSI_Driver_Policy 
     --policy-document file://iam-policy-example.json
-    
 ```
