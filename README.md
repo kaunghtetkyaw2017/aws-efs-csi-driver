@@ -54,3 +54,30 @@ aws iam attach-role-policy
   --policy-arn arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AmazonEKS_EFS_CSI_Driver_Policy 
   --role-name AmazonEKS_EFS_CSI_DriverRole
 ```
+### **7. Attach your new IAM policy to the role:**
+```bash
+aws iam attach-role-policy 
+  --policy-arn arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AmazonEKS_EFS_CSI_Driver_Policy 
+  --role-name AmazonEKS_EFS_CSI_DriverRole
+```
+### **8. Save the following contents to a file that's named efs-service-account.yaml:**
+```bash
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/name: aws-efs-csi-driver
+  name: efs-csi-controller-sa
+  namespace: kube-system
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::<AWS_ACCOUNT_ID>:role/AmazonEKS_EFS_CSI_DriverRole
+```
+### **9. Create the Kubernetes service account on your cluster:**
+```bash
+kubectl apply -f efs-service-account.yaml
+```
+**Note:** The Kubernetes service account that's named efs-csi-controller-sa is annotated with the IAM role that you created.
+### **10. Download the manifest from the public Amazon ECR registry and use the images to install the driver:**
+```bash
+$ kubectl kustomize "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.5" > public-ecr-driver.yaml
+```
