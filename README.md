@@ -81,3 +81,18 @@ kubectl apply -f efs-service-account.yaml
 ```bash
 $ kubectl kustomize "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.5" > public-ecr-driver.yaml
 ```
+**Note:** To install the EFS CSI driver, you can use Helm and a Kustomize with AWS Private or Public Registry. For instructions on how to install the EFS CSI Driver, see the AWS EFS CSI driver on the GitHub website.
+
+### **11.** Edit the file **public-ecr-driver.yaml** and annotate **efs-csi-controller-sa** Kubernetes service account section with the IAM role's ARN:
+```bash
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/name: aws-efs-csi-driver
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::<accountid>:role/AmazonEKS_EFS_CSI_DriverRole
+  name: efs-csi-controller-sa
+  namespace: kube-system
+```
+### **Deploy the Amazon EFS CSI driver
