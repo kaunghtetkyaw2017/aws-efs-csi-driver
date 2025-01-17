@@ -59,15 +59,15 @@
    ```
 8. Save the following contents to a file that's named _efs-service-account.yaml_:
    ```bash
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  labels:
-    app.kubernetes.io/name: aws-efs-csi-driver
-  name: efs-csi-controller-sa
-  namespace: kube-system
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::<AWS_ACCOUNT_ID>:role/AmazonEKS_EFS_CSI_DriverRole
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+     labels:
+       app.kubernetes.io/name: aws-efs-csi-driver
+     name: efs-csi-controller-sa
+     namespace: kube-system
+     annotations:
+       eks.amazonaws.com/role-arn: arn:aws:iam::<AWS_ACCOUNT_ID>:role/AmazonEKS_EFS_CSI_DriverRole
    ```
 9. Create the Kubernetes service account on your cluster:
    ```bash
@@ -82,15 +82,15 @@ metadata:
 
 11. Edit the file _public-ecr-driver.yaml_ and annotate _efs-csi-controller-sa_ Kubernetes service account section with the IAM role's ARN:
     ```bash
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  labels:
-    app.kubernetes.io/name: aws-efs-csi-driver
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::<accountid>:role/AmazonEKS_EFS_CSI_DriverRole
-  name: efs-csi-controller-sa
-  namespace: kube-system
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      labels:
+        app.kubernetes.io/name: aws-efs-csi-driver
+      annotations:
+        eks.amazonaws.com/role-arn: arn:aws:iam::<accountid>:role/AmazonEKS_EFS_CSI_DriverRole
+      name: efs-csi-controller-sa
+      namespace: kube-system
     ```
 12. Deploy the Amazon EFS CSI driver:
     ```bash
