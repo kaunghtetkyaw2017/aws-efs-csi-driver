@@ -107,15 +107,15 @@ This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using
         ```bash
         helm repo update aws-efs-csi-driver
         ```
-     3. Install a release of the driver using the Helm chart:
-        ```bash
-        helm upgrade --install aws-efs-csi-driver --namespace kube-system aws-efs-csi-driver/aws-efs-csi-driver
-        ```
+  3. Install a release of the driver using the Helm chart:
+     ```bash
+     helm upgrade --install aws-efs-csi-driver --namespace kube-system aws-efs-csi-driver/aws-efs-csi-driver
+     ```
 ### **Create an Amazon EFS File system**
-      1. To get the virtual private cloud (VPC) ID of your Amazon EKS cluster, run the following command:
-         ```bash
-         aws eks describe-cluster --name your_cluster_name --query "cluster.resourcesVpcConfig.vpcId" --output text
-         ```
+    1. To get the virtual private cloud (VPC) ID of your Amazon EKS cluster, run the following command:
+       ```bash
+       aws eks describe-cluster --name your_cluster_name --query "cluster.resourcesVpcConfig.vpcId" --output text
+       ```
         _**Note:**_ Replace *your_cluster_name* with your cluster name.
       2. To get the CIDR range for your VPC cluster, run the following command:
          ```bash
