@@ -99,11 +99,11 @@
 ### **[ Helm ]**
 This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using Helm with Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/helm.html).  
 **To install the driver using Helm**
-     1. Add the Helm repo:
-        ```bash
-        helm repo add aws-efs-csi-driver https://kubernetes-sigs.github.io/aws-efs-csi-driver/
-        ```
-     2. Update the repo:
+  1. Add the Helm repo:
+     ```bash
+     helm repo add aws-efs-csi-driver https://kubernetes-sigs.github.io/aws-efs-csi-driver/
+     ```
+  2. Update the repo:
         ```bash
         helm repo update aws-efs-csi-driver
         ```
