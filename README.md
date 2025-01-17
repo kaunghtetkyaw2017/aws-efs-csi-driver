@@ -142,4 +142,4 @@ This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using
          aws efs create-mount-target --file-system-id FileSystemId --subnet-id SubnetID --security-group sg-xxx
          ```
         _**Important:**_ Run the preceding command for all the Availability Zones with the _**SubnetID**_ in the Availability Zone where your worker nodes are running. Replace _**FileSystemId**_ with your EFS file system's ID, _**sg-xxx**_ with your security group's ID, and _**SubnetID**_ with your worker node subnet's ID. To create mount targets in multiple subnets, run the command for each subnet ID. It's a best practice to create a mount target in each Availability Zone where your worker nodes are running. You can create mount targets for all the Availability Zones where worker nodes are launched. Then, all the Amazon Elastic Compute Cloud (Amazon EC2) instances in these Availability Zones can use the file system.
-### **Test the Amazon EFS CSI driver**
+**Test the Amazon EFS CSI driver**
