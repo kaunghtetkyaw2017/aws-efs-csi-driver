@@ -1,4 +1,4 @@
-# Managing Persistent Storage with Amazon EFS on Amazon EKS
+# Managing Persistent Storage with Amazon EFS on EKS cluster
 
 1. Download the IAM policy:
    ```bash
