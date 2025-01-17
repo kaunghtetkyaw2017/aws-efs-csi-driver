@@ -112,34 +112,34 @@ This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using
      helm upgrade --install aws-efs-csi-driver --namespace kube-system aws-efs-csi-driver/aws-efs-csi-driver
      ```
 ### **Create an Amazon EFS File system**
-    1. To get the virtual private cloud (VPC) ID of your Amazon EKS cluster, run the following command:
-       ```bash
-       aws eks describe-cluster --name your_cluster_name --query "cluster.resourcesVpcConfig.vpcId" --output text
-       ```
-        _**Note:**_ Replace *your_cluster_name* with your cluster name.
-      2. To get the CIDR range for your VPC cluster, run the following command:
-         ```bash
-         aws ec2 describe-vpcs --vpc-ids YOUR_VPC_ID --query "Vpcs[].CidrBlock" --output text
-         ```
-         _**Note:**_ Replace the _**YOUR_VPC_ID**_ with your VPC ID.
-      3. Create a security group that allows inbound network file system (NFS) traffic for your Amazon EFS mount points:
-         ```bash
-         aws ec2 create-security-group --description efs-test-sg --group-name efs-sg --vpc-id YOUR_VPC_ID
-         ```
-         _**Note:**_ Replace _**YOUR_VPC_ID**_ with your VPC ID. Note the _**GroupId**_ to use later.
-      4. To allow resources in your VPC to communicate with your Amazon EFS file system, add an NFS inbound rule:
-         ```bash
-         aws ec2 authorize-security-group-ingress --group-id sg-xxx --protocol tcp --port 2049 --cidr YOUR_VPC_CIDR
-         ```
-         _**Note:**_ Replace _**YOUR_VPC_CIDR**_ with your VPC CIDR and _**sg-xxx**_ with your security group ID.
-      5. Create an Amazon EFS file system for your Amazon EKS cluster:
-         ```bash
-         aws efs create-file-system --creation-token eks-efs
-         ```
-         _**Note:**_ Note the _**FileSystemId**_ to use later.
-      6. To create a mount target for Amazon EFS, run the following command:
-         ```bash
-         aws efs create-mount-target --file-system-id FileSystemId --subnet-id SubnetID --security-group sg-xxx
-         ```
-        _**Important:**_ Run the preceding command for all the Availability Zones with the _**SubnetID**_ in the Availability Zone where your worker nodes are running. Replace _**FileSystemId**_ with your EFS file system's ID, _**sg-xxx**_ with your security group's ID, and _**SubnetID**_ with your worker node subnet's ID. To create mount targets in multiple subnets, run the command for each subnet ID. It's a best practice to create a mount target in each Availability Zone where your worker nodes are running. You can create mount targets for all the Availability Zones where worker nodes are launched. Then, all the Amazon Elastic Compute Cloud (Amazon EC2) instances in these Availability Zones can use the file system.
-**Test the Amazon EFS CSI driver**
+   1. To get the virtual private cloud (VPC) ID of your Amazon EKS cluster, run the following command:
+      ```bash
+      aws eks describe-cluster --name your_cluster_name --query "cluster.resourcesVpcConfig.vpcId" --output text
+      ```
+      _**Note:**_ Replace *your_cluster_name* with your cluster name.
+   2. To get the CIDR range for your VPC cluster, run the following command:
+      ```bash
+      aws ec2 describe-vpcs --vpc-ids YOUR_VPC_ID --query "Vpcs[].CidrBlock" --output text
+      ```
+      _**Note:**_ Replace the _**YOUR_VPC_ID**_ with your VPC ID.
+   3. Create a security group that allows inbound network file system (NFS) traffic for your Amazon EFS mount points:
+      ```bash
+      aws ec2 create-security-group --description efs-test-sg --group-name efs-sg --vpc-id YOUR_VPC_ID
+      ```
+      _**Note:**_ Replace _**YOUR_VPC_ID**_ with your VPC ID. Note the _**GroupId**_ to use later.
+   4. To allow resources in your VPC to communicate with your Amazon EFS file system, add an NFS inbound rule:
+      ```bash
+      aws ec2 authorize-security-group-ingress --group-id sg-xxx --protocol tcp --port 2049 --cidr YOUR_VPC_CIDR
+      ```
+      _**Note:**_ Replace _**YOUR_VPC_CIDR**_ with your VPC CIDR and _**sg-xxx**_ with your security group ID.
+   5. Create an Amazon EFS file system for your Amazon EKS cluster:
+      ```bash
+      aws efs create-file-system --creation-token eks-efs
+      ```
+      _**Note:**_ Note the _**FileSystemId**_ to use later.
+   6. To create a mount target for Amazon EFS, run the following command:
+      ```bash
+      aws efs create-mount-target --file-system-id FileSystemId --subnet-id SubnetID --security-group sg-xxx
+      ```
+      _**Important:**_ Run the preceding command for all the Availability Zones with the _**SubnetID**_ in the Availability Zone where your worker nodes are running. Replace _**FileSystemId**_ with your EFS file system's ID, _**sg-xxx**_ with your security group's ID, and _**SubnetID**_ with your worker node subnet's ID. To create mount targets in multiple subnets, run the command for each subnet ID. It's a best practice to create a mount target in each Availability Zone where your worker nodes are running. You can create mount targets for all the Availability Zones where worker nodes are launched. Then, all the Amazon Elastic Compute Cloud (Amazon EC2) instances in these Availability Zones can use the file system.
+### **Test the Amazon EFS CSI driver**
