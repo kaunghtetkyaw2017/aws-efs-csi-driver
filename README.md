@@ -150,7 +150,7 @@ This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using
 
       ```sh
       git clone https://github.com/kubernetes-sigs/aws-efs-csi-driver.git
-     ```
+      ```
 
    1. Navigate to the `multiple_pods` example directory.
 
@@ -188,7 +188,7 @@ This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using
        csi:
          driver: efs.csi.aws.com
          volumeHandle: fs-582a03f3
-    ```
+     ```
   **Note**  
     `spec.capacity` is ignored by the Amazon EFS CSI driver because Amazon EFS is an elastic file system. The actual storage capacity value in persistent volumes and persistent volume claims isn't used when creating the file system. However, because storage capacity is a required field in Kubernetes, you must specify a valid value, such as, `5Gi` in this example. This value doesn't limit the size of your Amazon EFS file system.
 
