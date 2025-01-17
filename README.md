@@ -17,7 +17,7 @@ aws eks describe-cluster --name your_cluster_name --query "cluster.identity.oidc
 ```
 _**Note:**_ Replace _**your_cluster_name**_ with your cluster name.
 
-4. Create the following IAM trust policy, and then grant the AssumeRoleWithWebIdentity action to your Kubernetes service account:**
+4. Create the following IAM trust policy, and then grant the AssumeRoleWithWebIdentity action to your Kubernetes service account:
 ```json
 cat <<EOF > trust-policy.json
 {
