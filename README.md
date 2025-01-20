@@ -148,9 +148,9 @@ This procedure requires Helm V3 or later. To install or upgrade Helm, see [Using
 
    1. Clone the [Amazon EFS Container Storage Interface \(CSI\) driver](https://github.com/kubernetes-sigs/aws-efs-csi-driver) GitHub repository to your local system.
 
-      ```sh
-      git clone https://github.com/kubernetes-sigs/aws-efs-csi-driver.git
-      ```
+         ```sh
+         git clone https://github.com/kubernetes-sigs/aws-efs-csi-driver.git
+         ```
 
    1. Navigate to the `multiple_pods` example directory.
 
