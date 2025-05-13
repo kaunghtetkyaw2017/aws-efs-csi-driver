@@ -6,8 +6,8 @@
    ```
 2. Create an IAM policy:
    ```bash
-   aws iam create-policy 
-       --policy-name AmazonEKS_EFS_CSI_Driver_Policy 
+   aws iam create-policy \
+       --policy-name AmazonEKS_EFS_CSI_Driver_Policy \
        --policy-document file://iam-policy-example.json
    ```
 3. To determine your cluster's OIDC provider ID, run the following command:
@@ -41,20 +41,14 @@
 
 5. Create an IAM role:
    ```bash
-   aws iam create-role 
-       --role-name AmazonEKS_EFS_CSI_DriverRole 
+   aws iam create-role \
+       --role-name AmazonEKS_EFS_CSI_DriverRole \
        --assume-role-policy-document file://"trust-policy.json"
    ```
 6. Attach your new IAM policy to the role:
    ```bash
-   aws iam attach-role-policy 
-       --policy-arn arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AmazonEKS_EFS_CSI_Driver_Policy 
-       --role-name AmazonEKS_EFS_CSI_DriverRole
-   ```
-7. Attach your new IAM policy to the role:
-   ```bash
-   aws iam attach-role-policy 
-       --policy-arn arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AmazonEKS_EFS_CSI_Driver_Policy 
+   aws iam attach-role-policy \
+       --policy-arn arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AmazonEKS_EFS_CSI_Driver_Policy \
        --role-name AmazonEKS_EFS_CSI_DriverRole
    ```
 8. Save the following contents to a file that's named _efs-service-account.yaml_:
